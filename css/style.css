@@ -1,0 +1,56 @@
+
+/*----------------------------------------------------------------
+    DOCUMENT CSS START
+*/
+  
+/* Box sizing rules */
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.2;
+    color: white;
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    margin: 0;
+}
+
+/*----------------------------------------------------------------
+    DOCUMENT CSS FINISH
+*/
+
+.floorinator {
+    margin: auto;
+    background-color: rgb(209, 209, 0);
+    padding: 20px;
+}
+
+.floorinator .results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.floorinator .result_text {
+    display: none;
+    text-align: center;
+    margin: auto;
+    color: black;
+    padding: 5px 15px;
+    transition: 1s all linear;
+    font-size: 40px;
+    font-weight: bold;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: white;
+}
+
+.floorinator .result_text.show {
+    display: inline-block;
+    margin-top: 12px;
+}
