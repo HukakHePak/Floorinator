@@ -9,12 +9,12 @@ html {
 }
 
 body {
-    font-family: 'Roboto';
+    font-family:Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
     font-style: normal;
-    font-size: 18px;
-    font-weight: normal;
     line-height: 1.2;
-    color: white;
     background-color: white;
     height: 100vh;
     display: flex;
@@ -29,6 +29,58 @@ body {
     margin: auto;
     background-color: rgb(209, 209, 0);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.floorinator .name_in {
+    font-size: 30px;
+    margin: auto;
+}
+
+.floorinator .name_in [type="text"] {
+    border: 0;
+    padding: 5px 15px;
+    font-size: inherit;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    transition: 0.1s;
+}
+
+.floorinator .name_in [type="text"]:focus {
+    outline: none;
+    transform: scale(1.02);
+}
+
+.floorinator .name_in [type="text"]:hover {
+    box-shadow: white 0 0 10px;
+}
+
+.floorinator .name_in [type="text"]::placeholder {
+    color: white;
+}
+
+.floorinator .name_in button {
+    background: white;
+    color:  white;
+    border: 0;
+    height: 44px;
+    width: 44px;
+    font-size: inherit;
+    font-weight: bold;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1.5px;
+    transition: 0.1s;
+}
+
+.floorinator .name_in button:focus {
+    transform: scale(1.05);
+}
+
+.floorinator .name_in button:hover {
+    box-shadow: white 0 0 10px;
 }
 
 .floorinator .results {
@@ -41,13 +93,10 @@ body {
     display: none;
     text-align: center;
     margin: auto;
-    color: black;
     padding: 5px 15px;
     transition: 1s all linear;
-    font-size: 40px;
-    font-weight: bold;
-   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 .floorinator .result_text.show {
