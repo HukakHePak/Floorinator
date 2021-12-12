@@ -5,53 +5,52 @@ const URLS = {
     nationalize: 'https://api.nationalize.io'
 }
 
-function addProperty(prop, output) {
-    output.textContent = prop;
-    output.classList.add('show');   
+function addProperty(property, element) {
+    const newElem = element.cloneNode(true);
+    newElem.textContent = property;
+    
+    if(element.classList.contains('floor')) {
+        FLOOR_FORM.results.prepend(newElem);
+        setInterval(() => {newElem.style.background = '#' + Math.floor(Math.random() * 1000)}, 500);
+        return;
+    } 
+    FLOOR_FORM.results.append(newElem);
 }
 
-function removeProperty(output) {
-    output.textContent = '';
-    output.classList.remove('show');  
+function clearList() {
+    const list = FLOOR_FORM.results.children;
+    while(list.length) 
+        list[0].remove();
 }
 
 function requestingUrl(url, name, callback) {
     const requestUrl = `${url}?name=${name}`;
     fetch(requestUrl)
     .then(response => response.json())   
-    .then(response => callback(response));       
+    .then(response => callback(response)); 
 }
 
+clearList();
+
 FLOOR_FORM.form.onsubmit = () => {
+    clearList();
     sound();
     const name = FLOOR_FORM.name.value; 
 
     if(name) {
         requestingUrl(URLS.floorize, name, resp => {                 
-            const floor =  resp['gender'];                
-            const output = FLOOR_FORM.properties[0];           
-            if(output) addProperty(`${name} is ${floor}`, output);                             
-            else removeProperty(output);           
+            const floor =  resp['gender'];                     
+            if(floor) 
+                addProperty(`${name} is ${floor}`, FLOOR_FORM.floor);                                     
         });
 
-        requestingUrl(URLS.nationalize, name, resp => {
-            const output = FLOOR_FORM.properties[1];
-            try {
-                const country = resp['country'][0]['country_id'];
-                addProperty(country, output);
-            }
-            catch {
-                removeProperty(output);
-            } 
-        });
+        requestingUrl(URLS.nationalize, name, resp => 
+            resp['country'].forEach(item => addProperty(item['country_id'], FLOOR_FORM.country))
+        );
     }   
     FLOOR_FORM.form.reset();
     return false;
 }
-
-setInterval(() => {
-    FLOOR_FORM.properties.forEach(prop => prop.style.background = '#' + Math.floor(Math.random() * 1000));
-}, 500);
 
 function sound() {
     FLOOR_FORM.player.play();
