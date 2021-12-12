@@ -30,7 +30,7 @@ FLOOR_FORM.form.onsubmit = () => {
         requestingUrl(URLS.floorize, name, resp => {                 
             const floor =  resp['gender'];                
             const output = FLOOR_FORM.properties[0];           
-            if(gender) addProperty(`${name} is ${floor}`, output);                             
+            if(output) addProperty(`${name} is ${floor}`, output);                             
             else removeProperty(output);           
         });
 
